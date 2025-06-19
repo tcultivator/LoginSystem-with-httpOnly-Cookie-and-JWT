@@ -105,11 +105,14 @@ async function confirmDeposit() {
 }
 
 
-
-
-
 const withdrawInput = document.getElementById('withdrawinput');
 async function confirmWithdraw() {
+    if (parseInt(accountBalance) < parseInt(withdrawInput.value)) {
+        alert('insufficient balance ')
+    }
+    else if (withdrawInput.value == '') {
+        alert('Insert Ammount')
+    } else {
     const withdraw = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/withdraw', {
         method: 'PUT',
         credentials: 'include',
@@ -120,12 +123,32 @@ async function confirmWithdraw() {
     })
 
     const data = await withdraw.json()
-    if (withdraw.ok) {
-        console.log('success')
-        getMeData()
-    }
-    else {
-        console.log('error')
-    }
+   if (withdraw.ok) {
+            document.getElementById('notifWithdraw').style = `display:flex;
+            background-color: green;`
+            setTimeout(() => {
+                getMeData()
+                hideWithdraw()
+                document.getElementById('notifWithdraw').style = `display:none;`
+            }, 1000);
+
+        }
+        else {
+            document.getElementById('notif').style = `display:flex;
+            background-color: red;`
+            setTimeout(() => {
+                document.getElementById('notif').style = `display:none;`
+            }, 1000);
+        }
+        }
+}
+
+function hideWithdraw() {
+    document.getElementById('Withdraw').style = `display:none;`
+    withdrawInput.value = ''
+}
+function hideDeposit() {
+    document.getElementById('Deposit').style = `display:none;`
+    depositinput.value = ''
 }
 
