@@ -15,7 +15,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
 
 async function signupFunc() {
-    const signup = await fetch('http://127.0.0.1:8080/signup', {
+    const signup = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com', {
         method: 'POST',
         credentials: 'include',
         headers: {
