@@ -70,9 +70,6 @@ document.getElementById('withdrawBtn').addEventListener('click', () => {
 const depositinput = document.getElementById('depositinput');
 async function confirmDeposit() {
     console.log('na click ung deposit')
-    if(depositinput.value==''){
-        alert('Insert Ammount')
-    }else{
     const deposit = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/deposit', {
         method: 'PUT',
         credentials: 'include',
@@ -83,7 +80,7 @@ async function confirmDeposit() {
     })
 
     const data = await deposit.json()
-   if (deposit.ok) {
+    if (deposit.ok) {
         document.getElementById('notifDeposit').style = `display:flex;
             background-color: green;`
         setTimeout(() => {
@@ -101,8 +98,8 @@ async function confirmDeposit() {
         }, 1000);
 
     }
-    }
 }
+
 
 const withdrawInput = document.getElementById('withdrawinput');
 async function confirmWithdraw() {
