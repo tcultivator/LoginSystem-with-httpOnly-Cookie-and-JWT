@@ -76,6 +76,9 @@ document.getElementById('withdrawBtn').addEventListener('click', () => {
 const depositinput = document.getElementById('depositinput');
 async function confirmDeposit() {
     console.log('na click ung deposit')
+    if(depositinput.value==''){
+        alert('Insert Ammount')
+    }else{
     const deposit = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/deposit', {
         method: 'PUT',
         credentials: 'include',
@@ -103,6 +106,7 @@ async function confirmDeposit() {
             document.getElementById('notifDeposit').style = `display:none;`
         }, 1000);
 
+    }
     }
 }
 
