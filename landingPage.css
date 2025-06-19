@@ -3,25 +3,22 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
-    background: url('bg1.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: 1950px auto;
+    background-color: #053C5E;
 }
 
 body::before {
     content: " ";
     width: 100%;
-    background: rgba(0, 0, 0, 0.575);
+
     height: 100%;
     display: flex;
     position: absolute;
     top: 0;
+    z-index: -2;
 }
 
 nav {
-    color: white;
+    color: rgb(255, 255, 255);
     display: flex;
     position: fixed;
     top: 0;
@@ -31,6 +28,7 @@ nav {
     justify-content: space-between;
     width: 100%;
     box-sizing: border-box;
+    
 }
 
 nav .rightSide {
@@ -40,9 +38,10 @@ nav .rightSide {
 }
 
 nav .rightSide a {
-    color: white;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     text-align: center;
+    font-weight: bold;
 }
 
 nav .rightSide a::before {
@@ -50,8 +49,8 @@ nav .rightSide a::before {
     width: 0px;
     height: 20px;
     position: absolute;
-    border-bottom: 5px solid white;
-    transition: .3s;
+    border-bottom: 3px solid rgb(255, 255, 255);
+    transition: .2s;
 
 }
 
@@ -66,22 +65,23 @@ nav .rightSide a:hover::before {
     font-size: 25px;
     cursor: pointer;
     display: none;
+
 }
 
 
 
 #modalBody {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.363);
+    background-color: rgba(0, 0, 0, 0.473);
     width: 100%;
     height: 100%;
     display: flex;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 #modalBody .modalcontent {
     margin: auto;
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 10px;
     border-radius: 5px;
     backdrop-filter: blur(2px);
@@ -90,6 +90,7 @@ nav .rightSide a:hover::before {
     box-sizing: border-box;
     text-align: center;
     align-items: center;
+    background-color: white;
 }
 
 #modalBody div h2 {
@@ -100,32 +101,48 @@ nav .rightSide a:hover::before {
 #modalBody .modalBtn {
     font-size: 13px;
     width: 100%;
-
+    font-weight: bold;
     display: flex;
     gap: 10px;
 
 }
 
 #modalBody .modalBtn button:last-child {
-    font-size: 13px;
+    font-size: 12px;
     width: 100%;
-    background-color: rgb(126, 126, 126);
+    background-color: #1F7A8C;
     border-radius: 5px;
     border: none;
-    padding: 5px;
-    color: white;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    border: 2px solid #1F7A8C;
+    font-weight: bold;
+    transition: .2s;
+    cursor: pointer;
 
 }
 
+#modalBody .modalBtn button:last-child:hover {
+    background-color: #218599;
+}
+
 #modalBody .modalBtn button:first-child {
-    font-size: 13px;
+    font-size: 12px;
     width: 100%;
-    background-color: rgb(150, 7, 7);
+    background-color: #053C5E;
     border-radius: 5px;
     border: none;
-    padding: 5px;
+    padding: 10px;
+    font-weight: bold;
     color: white;
+    border: 2px solid #053C5E;
+    transition: .2s;
+    cursor: pointer;
 
+}
+
+#modalBody .modalBtn button:first-child:hover {
+    background-color: #074a74;
 }
 
 #logout {
@@ -155,17 +172,17 @@ nav .rightSide a:hover::before {
         position: absolute;
         right: 3%;
         top: 2%;
-        color: white;
+        color: rgb(255, 255, 255);
     }
 
 
     nav .rightSide {
-        position: absolute;
+        position: fixed;
         display: flex;
         flex-direction: column;
         top: 0;
         right: -350px;
-        background-color: rgba(0, 0, 0, 0.205);
+        background-color: #0e456871;
         padding: 10px;
         height: 100vh;
         width: 250px;
@@ -174,6 +191,9 @@ nav .rightSide a:hover::before {
         justify-items: center;
         text-align: center;
         transition: .2s;
+        z-index: 1;
+        backdrop-filter: blur(2px);
+        color: rgb(0, 0, 0);
 
     }
 
@@ -187,13 +207,14 @@ nav .rightSide a:hover::before {
 
     nav .profile {
         width: 100%;
-        background-color: rgba(109, 109, 109, 0.521);
+        background-color: #1F7A8C;
         position: absolute;
         padding: 20px;
         top: 0%;
         left: 0;
         text-align: left;
         cursor: pointer;
+        color: white;
     }
 
     #logout {
@@ -215,11 +236,82 @@ nav .rightSide a:hover::before {
 
 
 
+#bankBody {
+    position: absolute;
+    width: 100%;
+    top: 10%;
+    z-index: -1;
+
+}
+
+.bankContent {
+    background-color: #ffffff;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.473);
+}
 
 
+.bankContent .Balance {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    font-weight: bold;
+
+}
+
+.bankContent .bankBtn {
+    width: 40%;
+    display: flex;
+    gap: 5px;
+
+}
+
+.bankContent .bankBtn button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #1F7A8C;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid #1F7A8C;
+    transition: .2s;
+}
+
+.bankContent .bankBtn button:hover {
+    background-color: white;
+    color: #1F7A8C;
+    border: 2px solid #1F7A8C;
+    font-weight: bold;
+}
 
 
+#Deposit {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
+}
+
+#Withdraw {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
 
 
 
