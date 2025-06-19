@@ -113,17 +113,17 @@ async function confirmWithdraw() {
     else if (withdrawInput.value == '') {
         alert('Insert Ammount')
     } else {
-    const withdraw = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/withdraw', {
-        method: 'PUT',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ withdrawAmmount: parseInt(accountBalance) - parseInt(withdrawInput.value) })
-    })
+        const withdraw = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/withdraw', {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ withdrawAmmount: parseInt(accountBalance) - parseInt(withdrawInput.value) })
+        })
 
-    const data = await withdraw.json()
-   if (withdraw.ok) {
+        const data = await withdraw.json()
+        if (withdraw.ok) {
             document.getElementById('notifWithdraw').style = `display:flex;
             background-color: green;`
             setTimeout(() => {
@@ -140,7 +140,8 @@ async function confirmWithdraw() {
                 document.getElementById('notif').style = `display:none;`
             }, 1000);
         }
-        }
+    }
+
 }
 
 function hideWithdraw() {
@@ -151,4 +152,3 @@ function hideDeposit() {
     document.getElementById('Deposit').style = `display:none;`
     depositinput.value = ''
 }
-
