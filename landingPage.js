@@ -10,7 +10,7 @@ document.getElementById('menuIcon').addEventListener('click', () => {
 
 
 async function getMeData() {
-    const getme = await fetch('http://127.0.0.1:8080/getme', {
+    const getme = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/getme', {
         method: 'POST',
         credentials: 'include',
         headers: {
