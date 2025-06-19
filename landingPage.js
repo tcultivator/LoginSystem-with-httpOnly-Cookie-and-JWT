@@ -75,7 +75,7 @@ async function confirmDeposit() {
         alert('Insert Ammount')
     }
     else {
-        const deposit = await fetch('http://127.0.0.1:8080/deposit', {
+        const deposit = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/deposit', {
             method: 'PUT',
             credentials: 'include',
             headers: {
