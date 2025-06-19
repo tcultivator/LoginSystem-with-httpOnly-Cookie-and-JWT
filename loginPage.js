@@ -3,7 +3,7 @@ const password = document.getElementById('password')
 
 document.getElementById('loginForm').addEventListener('submit', async function (e) {
     e.preventDefault()
-    const login = await fetch('http://127.0.0.1:8080/login', {
+    const login = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/login', {
         method: 'POST',
         credentials: 'include',
         headers: {
