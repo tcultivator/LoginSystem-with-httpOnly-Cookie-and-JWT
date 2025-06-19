@@ -45,15 +45,44 @@
     </div>
 
     <div id="Deposit" style="display: none;">
-        <label for="depositinput">Enter Ammount</label>
-        <input type="number" id="depositinput">
-        <button onclick="confirmDeposit()">Submit</button>
+        <div class="depositwHead">
+            <h2>DEPOSIT</h2>
+        </div>
+        <div class="depositInputBody">
+
+            <input type="number" id="depositinput" placeholder="">
+            <label for="depositinput">Enter Ammount</label>
+        </div>
+        <div id="notifDeposit" style="display: none;">
+            <p id="message">Success</p>
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+
+        <div class="buttonDeposit">
+            <button onclick="confirmDeposit()">Submit</button>
+            <button onclick="hideDeposit()">Cancel</button>
+        </div>
+
+
     </div>
 
     <div id="Withdraw" style="display: none;">
-        <label for="withdrawinput">Enter Ammount</label>
-        <input type="number" id="withdrawinput">
-        <button onclick="confirmWithdraw()">Submit</button>
+        <div class="withdrawHead">
+            <h2>WITHDRAW</h2>
+        </div>
+        <div class="withdrawInputBody">
+            <input type="number" id="withdrawinput" placeholder="" required>
+            <label for="withdrawinput">Enter Ammount</label>
+        </div>
+        <div id="notifWithdraw" style="display: none;">
+            <p id="message">Success</p>
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="buttonWithdraw">
+            <button onclick="confirmWithdraw()">Submit</button>
+            <button onclick="hideWithdraw()">Cancel</button>
+        </div>
+
     </div>
 
 
