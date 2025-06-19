@@ -20,7 +20,6 @@ const db = mysql.createConnection({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME
 });
-const sercretKey = 'gege'
 db.connect((err) => {
     if (err) {
         console.log('error connecting to database')
@@ -43,7 +42,7 @@ app.post('/login', (req, res) => {
             console.log(token);
             res.cookie('token', token, {
                 httpOnly: true,
-                sameSite: 'strict',
+                sameSite: 'none',
                 maxAge: 60 * 60 * 1000,
                 secure: true
             })
