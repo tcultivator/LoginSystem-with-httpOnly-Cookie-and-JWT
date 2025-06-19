@@ -83,8 +83,9 @@ function auth(req, res, next) {
 
 app.post('/signup', (req, res) => {
     const userData = req.body;
-    const query = 'INSERT INTO accounts (username,password)VALUES(?,?)'
-    db.query(query, [userData.username, userData.password], (err, result) => {
+    const accountBalance = 0;
+    const query = 'INSERT INTO accounts (username,password,accountBalance)VALUES(?,?,?)'
+    db.query(query, [userData.username, userData.password,accountBalance], (err, result) => {
         if (err) {
             res.status(401).json({ message: 'error signup' })
         }
