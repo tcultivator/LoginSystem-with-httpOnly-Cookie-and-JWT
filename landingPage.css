@@ -28,7 +28,7 @@ nav {
     justify-content: space-between;
     width: 100%;
     box-sizing: border-box;
-    
+
 }
 
 nav .rightSide {
@@ -295,14 +295,8 @@ nav .rightSide a:hover::before {
 }
 
 
-#Deposit {
-    color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 
-}
+
 
 #Withdraw {
     color: white;
@@ -310,8 +304,181 @@ nav .rightSide a:hover::before {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    color: black;
+    text-align: center;
 
 }
+
+#Withdraw .withdrawInputBody {
+
+    width: 300px;
+    display: flex;
+    align-items: center;
+
+
+}
+
+#Withdraw .withdrawInputBody input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    outline-color: #053C5E;
+}
+
+#Withdraw .withdrawInputBody label {
+    position: absolute;
+    padding: 0px 10px;
+    cursor: text;
+    transition: .2s;
+}
+
+#Withdraw .withdrawInputBody input:focus~label,
+#Withdraw .withdrawInputBody input:not(:placeholder-shown)~label {
+    color: #053C5E;
+    transform: translate(10px, -20px);
+    background-color: white;
+    font-size: 13px;
+    border-left: 1px solid #053C5E;
+    border-right: 1px solid #053C5E;
+}
+
+
+
+#Withdraw .buttonWithdraw {
+
+    padding: 15px 0px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    gap: 5px;
+}
+
+#Withdraw .buttonWithdraw button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#Withdraw .buttonWithdraw button:first-child {
+    background-color: #053C5E;
+    color: white;
+    font-weight: bold;
+}
+
+#Withdraw .buttonWithdraw button:first-child:hover {
+    background-color: #05466e;
+
+}
+
+#Withdraw .buttonWithdraw button:last-child {
+    background-color: rgb(168, 168, 168);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#Withdraw .buttonWithdraw button:last-child:hover {
+    background-color: rgb(146, 146, 146);
+
+}
+
+
+
+
+
+#Deposit {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    color: black;
+    text-align: center;
+
+}
+
+#Deposit .depositInputBody {
+
+    width: 300px;
+    display: flex;
+    align-items: center;
+
+
+}
+
+#Deposit .depositInputBody input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    outline-color: #053C5E;
+}
+
+#Deposit .depositInputBody label {
+    position: absolute;
+    padding: 0px 10px;
+    cursor: text;
+    transition: .2s;
+}
+
+#Deposit .depositInputBody input:focus~label,
+#Deposit .depositInputBody input:not(:placeholder-shown)~label {
+    color: #053C5E;
+    transform: translate(10px, -20px);
+    background-color: white;
+    font-size: 13px;
+    border-left: 1px solid #053C5E;
+    border-right: 1px solid #053C5E;
+}
+
+
+
+#Deposit .buttonDeposit {
+
+    padding: 15px 0px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    gap: 5px;
+}
+
+#Deposit .buttonDeposit button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#Deposit .buttonDeposit button:first-child {
+    background-color: #053C5E;
+    color: white;
+    font-weight: bold;
+}
+
+#Deposit .buttonDeposit button:first-child:hover {
+    background-color: #05466e;
+
+}
+
+#Deposit .buttonDeposit button:last-child {
+    background-color: rgb(168, 168, 168);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#Deposit .buttonDeposit button:last-child:hover {
+    background-color: rgb(146, 146, 146);
+
+}
+
+
 
 
 
@@ -343,4 +510,31 @@ nav .rightSide a:hover::before {
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+#notifWithdraw {
+
+    color: white;
+    font-weight: bold;
+    align-items: center;
+    display: flex;
+    padding: 0;
+    margin: 5px 0 0 0;
+    text-align: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#notifDeposit {
+
+    color: white;
+    font-weight: bold;
+    align-items: center;
+    display: flex;
+    padding: 0;
+    margin: 5px 0 0 0;
+    text-align: center;
+    justify-content: center;
+    gap: 5px;
 }
