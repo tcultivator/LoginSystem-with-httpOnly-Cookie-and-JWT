@@ -94,6 +94,38 @@ app.post('/signup', (req, res) => {
     })
 })
 
+
+app.put('/deposit', auth, (req, res) => {
+    const depositData = req.body;
+    const verifiedUserId = req.userId;
+    const query = 'UPDATE accounts SET accountBalance = ? WHERE id = ?'
+    db.query(query, [depositData.depositAmmount, verifiedUserId], (err, result) => {
+        if (err) {
+            res.status(401).json({ message: 'error deposit' })
+        }
+        else {
+            res.status(200).json({ message: 'success deposit' })
+            console.log('success!')
+        }
+    })
+})
+
+
+app.put('/withdraw', auth, (req, res) => {
+    const withdrawData = req.body;
+    const verifiedUserId = req.userId;
+    const query = 'UPDATE accounts SET accountBalance = ? WHERE id = ?'
+    db.query(query, [withdrawData.withdrawAmmount, verifiedUserId], (err, result) => {
+        if (err) {
+            res.status(401).json({ message: 'error withdraw' })
+        }
+        else {
+            res.status(200).json({ message: 'success withdraw' })
+            console.log('success!')
+        }
+    })
+})
+
 app.listen(port, () => {
     console.log('server is running in port ', port)
 })
