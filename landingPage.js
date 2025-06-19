@@ -84,12 +84,23 @@ async function confirmDeposit() {
     })
 
     const data = await deposit.json()
-    if (deposit.ok) {
-        console.log('success')
-        getMeData()
+   if (deposit.ok) {
+        document.getElementById('notifDeposit').style = `display:flex;
+            background-color: green;`
+        setTimeout(() => {
+            getMeData()
+            hideDeposit()
+            document.getElementById('notifDeposit').style = `display:none;`
+        }, 1000);
+
     }
     else {
-        console.log('error')
+        document.getElementById('notifDeposit').style = `display:flex;
+            background-color: red;`
+        setTimeout(() => {
+            document.getElementById('notifDeposit').style = `display:none;`
+        }, 1000);
+
     }
 }
 
