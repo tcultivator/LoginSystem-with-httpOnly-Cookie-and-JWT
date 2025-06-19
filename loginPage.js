@@ -15,7 +15,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const data = await login.json()
     if (login.ok) {
         console.log(data.message)
-        window.location.replace('landingPage.html')
+        window.location.replace('index.html')
     }
     else {
         console.log(data.message)
