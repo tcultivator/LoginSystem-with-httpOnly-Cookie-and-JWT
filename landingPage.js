@@ -70,34 +70,41 @@ document.getElementById('withdrawBtn').addEventListener('click', () => {
 const depositinput = document.getElementById('depositinput');
 async function confirmDeposit() {
     console.log('na click ung deposit')
-    const deposit = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/deposit', {
-        method: 'PUT',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ depositAmmount: parseInt(accountBalance) + parseInt(depositinput.value) })
-    })
 
-    const data = await deposit.json()
-    if (deposit.ok) {
-        document.getElementById('notifDeposit').style = `display:flex;
-            background-color: green;`
-        setTimeout(() => {
-            getMeData()
-            hideDeposit()
-            document.getElementById('notifDeposit').style = `display:none;`
-        }, 1000);
-
+    if (depositinput.value == '') {
+        alert('Insert Ammount')
     }
     else {
-        document.getElementById('notifDeposit').style = `display:flex;
-            background-color: red;`
-        setTimeout(() => {
-            document.getElementById('notifDeposit').style = `display:none;`
-        }, 1000);
+        const deposit = await fetch('http://127.0.0.1:8080/deposit', {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ depositAmmount: parseInt(accountBalance) + parseInt(depositinput.value) })
+        })
 
+        const data = await deposit.json()
+        if (deposit.ok) {
+            document.getElementById('notifDeposit').style = `display:flex;
+            background-color: green;`
+            setTimeout(() => {
+                getMeData()
+                hideDeposit()
+                document.getElementById('notifDeposit').style = `display:none;`
+            }, 1000);
+
+        }
+        else {
+            document.getElementById('notifDeposit').style = `display:flex;
+            background-color: red;`
+            setTimeout(() => {
+                document.getElementById('notifDeposit').style = `display:none;`
+            }, 1000);
+
+        }
     }
+
 }
 
 
