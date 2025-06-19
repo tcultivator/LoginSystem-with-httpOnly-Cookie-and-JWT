@@ -8,7 +8,7 @@ require('dotenv').config();
 const app = express();
 app.use(express.json())
 app.use(cors({
-    origin: 'https://tcultivator.github.io/LoginSystem-with-httpOnly-Cookie-and-JWT',
+    origin: 'https://tcultivator.github.io',
     credentials: true
 }))
 app.use(cookieparser())
