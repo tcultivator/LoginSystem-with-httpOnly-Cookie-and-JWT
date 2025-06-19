@@ -74,7 +74,7 @@ document.getElementById('withdrawBtn').addEventListener('click', () => {
 const depositinput = document.getElementById('depositinput');
 async function confirmDeposit() {
     console.log('na click ung deposit')
-    const deposit = await fetch('http://127.0.0.1:8080/deposit', {
+    const deposit = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/deposit', {
         method: 'PUT',
         credentials: 'include',
         headers: {
@@ -99,7 +99,7 @@ async function confirmDeposit() {
 
 const withdrawInput = document.getElementById('withdrawinput');
 async function confirmWithdraw() {
-    const withdraw = await fetch('http://127.0.0.1:8080/withdraw', {
+    const withdraw = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/withdraw', {
         method: 'PUT',
         credentials: 'include',
         headers: {
