@@ -64,10 +64,12 @@ function cancelLogout() {
 
 document.getElementById('depositBtn').addEventListener('click', () => {
     document.getElementById('Deposit').style = `display:block;`
+    hideWithdraw()
 })
 
 document.getElementById('withdrawBtn').addEventListener('click', () => {
     document.getElementById('Withdraw').style = `display:block;`
+    hideDeposit()
 })
 
 
