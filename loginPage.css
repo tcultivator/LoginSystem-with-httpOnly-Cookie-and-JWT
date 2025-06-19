@@ -3,19 +3,15 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
-    background: url('bg1.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: 1950px auto;
-    
+    background-color: #053C5E;
+
 
 }
 
-body::before{
+body::before {
     content: " ";
     width: 100%;
-    background: rgba(0, 0, 0, 0.473);
+
     height: 100%;
     display: flex;
     position: absolute;
@@ -29,7 +25,7 @@ body::before{
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px black;
+    box-shadow: 0px 0px 5px 0px rgb(255, 255, 255);
     max-width: 400px;
     width: 100%;
 
@@ -133,7 +129,7 @@ body::before{
 }
 
 .buttonBody button {
-    background-color: rgb(109, 12, 12);
+     background-color: #1F7A8C;
     padding: 10px;
     border: none;
     align-items: center;
@@ -143,11 +139,12 @@ body::before{
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
+    transition: .2s;
 }
 
 .buttonBody button:hover {
-    background-color: rgb(151, 16, 16);
- 
+    background-color: #208ba0;
+
 }
 
 p {
