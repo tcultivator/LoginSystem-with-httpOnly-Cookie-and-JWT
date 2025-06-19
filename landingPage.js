@@ -6,9 +6,6 @@ document.getElementById('menuIcon').addEventListener('click', () => {
     toggle ? (document.getElementById('rightSide').style = `right: 0;`) : (document.getElementById('rightSide').style = `right:-350px`)
 })
 
-
-
-
 async function getMeData() {
     const getme = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/getme', {
         method: 'POST',
@@ -32,10 +29,7 @@ async function getMeData() {
 
 }
 
-
 document.addEventListener('DOMContentLoaded', getMeData);
-
-
 
 let profileToggle = false;
 document.getElementById('user').addEventListener('click', () => {
@@ -109,7 +103,6 @@ async function confirmDeposit() {
     }
     }
 }
-
 
 const withdrawInput = document.getElementById('withdrawinput');
 async function confirmWithdraw() {
