@@ -55,6 +55,8 @@ document.getElementById('withdrawBtn').addEventListener('click', () => {
 })
 const depositinput = document.getElementById('depositinput');
 async function confirmDeposit() {
+    console.log('na click ung deposit')
+
     if (depositinput.value == '') {
         alert('Insert Ammount')
     }
