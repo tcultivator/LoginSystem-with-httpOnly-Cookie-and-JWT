@@ -40,6 +40,7 @@ app.post('/login', (req, res) => {
         } else {
             const userData = JSON.parse(JSON.stringify(result[0]));
             const token = jwt.sign(userData, process.env.JWT_TOKEN_SECRET_KEY, { expiresIn: '1h' })
+            console.log(token);
             res.cookie('token', token, {
                 httpOnly: true,
                 sameSite: 'strict',
