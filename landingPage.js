@@ -1,5 +1,5 @@
 let toggle = false;
-
+let accountBalance;
 
 document.getElementById('menuIcon').addEventListener('click', () => {
     toggle = !toggle;
@@ -21,8 +21,9 @@ async function getMeData() {
     const data = await getme.json()
     if (getme.ok) {
         console.log(data)
-
         document.getElementById('user').innerText = data.verifiedUserData.username;
+        document.getElementById('accountBalance').textContent = data.verifiedUserData.accountBalance;
+        accountBalance = data.verifiedUserData.accountBalance;
     }
     else {
         alert(data.message)
