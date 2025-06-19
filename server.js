@@ -39,7 +39,7 @@ app.post('/login', (req, res) => {
             res.status(200).json({ message: 'no data found!' })
         } else {
             const userData = JSON.parse(JSON.stringify(result[0]));
-            const token = jwt.sign(userData, sercretKey, { expiresIn: '1h' })
+            const token = jwt.sign(userData, process.env.JWT_TOKEN_SECRET_KEY, { expiresIn: '1h' })
             res.cookie('token', token, {
                 httpOnly: true,
                 sameSite: 'strict',
@@ -72,7 +72,7 @@ function auth(req, res, next) {
     if (!token) {
         res.status(401).json({ message: 'unathorized user' })
     } else {
-        const verifiedToken = jwt.verify(token, sercretKey)
+        const verifiedToken = jwt.verify(token, process.env.JWT_TOKEN_SECRET_KEY)
         console.log(verifiedToken.id)
         req.userId = verifiedToken.id;
         next()
