@@ -1,0 +1,242 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    background: url('bg1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 1950px auto;
+
+
+}
+
+body::before {
+    content: " ";
+    width: 100%;
+    background: rgba(0, 0, 0, 0.473);
+    height: 100%;
+    display: flex;
+    position: absolute;
+}
+
+
+#registerForm {
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px black;
+    max-width: 400px;
+    width: 100%;
+
+    padding-bottom: 10px;
+    text-align: center;
+    backdrop-filter: blur(3px);
+    padding: 20px;
+    font-size: 13px;
+}
+
+#registerForm .header {
+    text-align: center;
+}
+
+#registerForm .header button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    text-align: center;
+    align-items: center;
+    font-size: 16px;
+    border: none;
+    padding: 5px;
+    width: 30px;
+    color: rgb(255, 255, 255);
+    background: none;
+    cursor: pointer;
+
+}
+
+.usernameBody,
+.passwordBody,
+.confirmpasswordBody {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+.usernameBody .usernameLabelbody,
+.passwordBody .passwordLabelBody,
+.confirmpasswordBody .confirmpasswordLabelBody {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: white;
+
+
+
+}
+
+.usernameBody .usernameLabelbody label,
+.passwordBody .passwordLabelBody label,
+.confirmpasswordBody .confirmpasswordLabelBody label {
+    transition: .2s;
+    cursor: text;
+    color: white;
+}
+
+
+.usernameBody .usernameLabelbody i,
+.passwordBody .passwordLabelBody i,
+.confirmpasswordLabelBody i {
+    color: white;
+    font-size: 15px;
+    border-right: 1px solid rgb(110, 110, 110);
+    padding: 10px;
+
+}
+
+.usernameBody input,
+.passwordBody input,
+.confirmpasswordBody input {
+    padding: 15px 37px;
+    box-sizing: border-box;
+    border: 1px solid rgb(110, 110, 110);
+    border-radius: 5px;
+    width: 100%;
+    color: rgb(78, 78, 78);
+    background: none;
+    color: white;
+}
+
+
+.usernameBody input:focus~.usernameLabelbody label,
+.passwordBody input:focus~.passwordLabelBody label,
+.confirmpasswordBody input:focus~.confirmpasswordLabelBody label,
+.usernameBody input:not(:placeholder-shown)~.usernameLabelbody label,
+.passwordBody input:not(:placeholder-shown)~.passwordLabelBody label,
+.confirmpasswordBody input:not(:placeholder-shown)~.confirmpasswordLabelBody label {
+    transform: translate(10px, -33px);
+
+    padding: 0px 5px;
+
+    font-size: 13px;
+}
+
+
+.buttonBody {
+
+    padding: 10px;
+
+}
+
+.buttonBody button {
+    background-color: rgb(109, 12, 12);
+    padding: 10px;
+    border: none;
+    align-items: center;
+    width: 100%;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.buttonBody button:hover {
+    background-color: rgb(151, 16, 16);
+
+}
+
+
+p {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+p:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+#notification {
+    background-color: green;
+    padding: 2px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+#notification div {
+
+    width: 18px;
+    height: 18px;
+    border: 4px dotted white;
+    border-radius: 50%;
+    border-bottom: 4px solid green;
+    animation: loader 1s linear infinite;
+}
+
+@keyframes loader {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+#loadingBody {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.384);
+    position: absolute;
+}
+
+#loading {
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    background-color: none;
+    border: 6px dotted rgb(255, 255, 255);
+    border-radius: 50%;
+    border-bottom: 6px dotted transparent;
+    animation: loading 1s linear infinite;
+}
+
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2820820f6e.js" crossorigin="anonymous"></script>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="loginPage.css">
+    <title>Login v3</title>
+</head>
+
+<body>
+
+    <form id="loginForm">
+        <div class="header">
+            <h1>LOGIN</h1>
+            <button type="button" id="goto">X</button>
+        </div>
+        <div class="usernameBody">
+            <input type="text" id="username" placeholder="" required>
+            <div class="usernameLabelbody">
+                <i class="fa-solid fa-user"></i>
+                <label for="username">Enter Username</label>
+            </div>
+
+        </div>
+        <div class="passwordBody">
+            <input type="password" id="password" placeholder="" required>
+            <div class="passwordLabelBody">
+                <i class="fa-solid fa-lock"></i>
+                <label for="password">Enter Password</label>
+            </div>
+
+        </div>
+        <div class="buttonBody">
+            <button type="submit">Submit</button>
+        </div>
+        <p id="gotogoto">Don't have account yet?</p>
+    </form>
+
+    <div id="loadingBody" style="display: none;">
+        <div id="loading"></div>
+    </div>
+
+
+
+
+    <script defer src="loginPage.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,254 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    background: url('bg1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 1950px auto;
+}
+
+body::before {
+    content: " ";
+    width: 100%;
+    background: rgba(0, 0, 0, 0.575);
+    height: 100%;
+    display: flex;
+    position: absolute;
+    top: 0;
+}
+
+nav {
+    color: white;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 5px 7%;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+nav .rightSide {
+    gap: 70px;
+    display: flex;
+
+}
+
+nav .rightSide a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+nav .rightSide a::before {
+    content: "";
+    width: 0px;
+    height: 20px;
+    position: absolute;
+    border-bottom: 5px solid white;
+    transition: .3s;
+
+}
+
+nav .rightSide a:hover::before {
+    width: 60px;
+    height: 20px;
+    border-bottom-right-radius: 8px;
+
+}
+
+#menuIcon {
+    font-size: 25px;
+    cursor: pointer;
+    display: none;
+}
+
+
+
+#modalBody {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.363);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    color: white;
+}
+
+#modalBody .modalcontent {
+    margin: auto;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 0px 2px 0px rgb(255, 255, 255);
+    width: 200px;
+    box-sizing: border-box;
+    text-align: center;
+    align-items: center;
+}
+
+#modalBody div h2 {
+    font-size: 17px;
+    box-sizing: border-box;
+}
+
+#modalBody .modalBtn {
+    font-size: 13px;
+    width: 100%;
+
+    display: flex;
+    gap: 10px;
+
+}
+
+#modalBody .modalBtn button:last-child {
+    font-size: 13px;
+    width: 100%;
+    background-color: rgb(126, 126, 126);
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    color: white;
+
+}
+
+#modalBody .modalBtn button:first-child {
+    font-size: 13px;
+    width: 100%;
+    background-color: rgb(150, 7, 7);
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    color: white;
+
+}
+
+#logout {
+    position: absolute;
+    right: 6%;
+    margin-top: 20px;
+    background-color: white;
+    padding: 3px 15px;
+    color: black;
+    cursor: pointer;
+    display: none;
+}
+
+
+
+
+
+
+@media (max-width:800px) {
+
+    body {
+        overflow: hidden;
+    }
+
+    #menuIcon {
+        display: block;
+        position: absolute;
+        right: 3%;
+        top: 2%;
+        color: white;
+    }
+
+
+    nav .rightSide {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        right: -350px;
+        background-color: rgba(0, 0, 0, 0.205);
+        padding: 10px;
+        height: 100vh;
+        width: 250px;
+        margin: auto;
+        align-items: center;
+        justify-items: center;
+        text-align: center;
+        transition: .2s;
+
+    }
+
+    nav .rightSide a {
+        align-items: center;
+        display: flex;
+
+        position: relative;
+        top: 20%;
+    }
+
+    nav .profile {
+        width: 100%;
+        background-color: rgba(109, 109, 109, 0.521);
+        position: absolute;
+        padding: 20px;
+        top: 0%;
+        left: 0;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    #logout {
+        position: absolute;
+        right: 66%;
+        top: 3%;
+        background-color: white;
+        padding: 3px 15px;
+        color: black;
+        cursor: pointer;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#loadingBody {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.384);
+    position: absolute;
+}
+
+#loading {
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    background-color: none;
+    border: 6px dotted rgb(255, 255, 255);
+    border-radius: 50%;
+    border-bottom: 6px dotted transparent;
+    animation: loading 1s linear infinite;
+}
+
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
