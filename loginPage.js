@@ -20,21 +20,13 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     else {
         console.log(data.message)
     }
-
-
 })
-
-
-
-
 
 document.getElementById('goto').addEventListener('click', () => {
     document.getElementById('loadingBody').style = 'display: flex;'
     setTimeout(() => {
         window.location.replace('registerPage.html')
     }, 1000);
-
-
 })
 
 document.getElementById('gotogoto').addEventListener('click', () => {
@@ -42,6 +34,4 @@ document.getElementById('gotogoto').addEventListener('click', () => {
     setTimeout(() => {
         window.location.replace('registerPage.html')
     }, 1000);
-
-
 })
