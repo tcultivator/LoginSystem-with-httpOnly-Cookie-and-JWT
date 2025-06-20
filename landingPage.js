@@ -39,13 +39,28 @@ document.getElementById('logout').addEventListener('click', () => {
     document.getElementById('logout').style = `display:none`
     document.getElementById('modalBody').style = `display:flex;`
 })
-function logout() {
-    console.log('test logout')
-    document.getElementById('loadingBody').style = `display:flex;`
-    document.getElementById('modalBody').style = `display:none;`
-    setTimeout(() => {
-        window.location.replace('loginPage.html')
-    }, 2000);
+async function logout() {
+    const res = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/userLogout', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const data = await res.json()
+    if (res.ok) {
+        console.log('test logout')
+        document.getElementById('loadingBody').style = `display:flex;`
+        document.getElementById('modalBody').style = `display:none;`
+        setTimeout(() => {
+            window.location.replace('loginPage.html')
+        }, 2000);
+
+    }
+    else {
+        console.log('error sa logout')
+    }
+
 }
 function cancelLogout() {
     document.getElementById('modalBody').style = `display:none;`
