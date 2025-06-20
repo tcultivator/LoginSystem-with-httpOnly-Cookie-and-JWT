@@ -21,7 +21,6 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             document.getElementById('notif').style = `display:none;`
             window.location.replace('index.html')
         }, 500);
-
     }
     else {
         document.getElementById('notif').style = `display:flex;`
