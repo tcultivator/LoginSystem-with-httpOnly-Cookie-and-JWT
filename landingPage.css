@@ -623,3 +623,103 @@ td {
     color: white;
     text-align: center;
 }
+
+
+
+
+
+
+@media (max-width:500px) {
+    .bankContent {
+        background-color: #ffffff;
+        width: 94%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.473);
+    }
+
+
+    .bankContent .bankBtn {
+        width: 100%;
+        display: flex;
+        gap: 5px;
+
+    }
+
+
+    .apps {
+        width: 100%;
+        height: auto;
+        min-height: 600px;
+        position: absolute;
+        top: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: -1;
+        overflow: auto;
+        background-color: transparent;
+    }
+
+
+    .apps .app1 {
+        box-shadow: 0px 0px 3px 0px black;
+        width: 100%;
+        min-height: 600px;
+        height: auto;
+        position: absolute;
+        border-radius: 5px;
+        top: 0%;
+        overflow: auto;
+        background-color: transparent;
+
+    }
+
+    #transactionHistory {
+        width: 100%;
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+        height: 100%;
+        
+    }
+
+    .transactionHistoryHead {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgb(133, 133, 133);
+    }
+
+    #transactionHistory h2 {
+        font-size: 17px;
+        color: rgb(54, 54, 54);
+    }
+
+    #transactionTable {
+        border: 1px solid rgba(0, 0, 0, 0.377);
+        border-collapse: collapse;
+        box-sizing: content-box;
+    }
+
+    #transactionTable th {
+        background-color: #1F7A8C;
+        color: white;
+        padding: 10px;
+        
+    }
+
+    #transactionTable tr,
+    th,
+    td {
+        border: 1px solid rgba(0, 0, 0, 0.233);
+        padding: 10px;
+        width: 400px;
+        color: rgb(63, 63, 63);
+        
+        font-size: 12px;
+    }
+}
