@@ -55,17 +55,14 @@ async function logout() {
         setTimeout(() => {
             window.location.replace('loginPage.html')
         }, 2000);
-
     }
     else {
         console.log('error sa logout')
     }
-
 }
 function cancelLogout() {
     document.getElementById('modalBody').style = `display:none;`
 }
-
 document.getElementById('depositBtn').addEventListener('click', () => {
     document.getElementById('Deposit').style = `display:block;`
     hideWithdraw()
