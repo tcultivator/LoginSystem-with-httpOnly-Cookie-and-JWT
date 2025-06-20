@@ -2,7 +2,6 @@ body {
     padding: 0;
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    overflow: hidden;
     background-color: #053C5E;
 }
 
@@ -537,4 +536,90 @@ nav .rightSide a:hover::before {
     text-align: center;
     justify-content: center;
     gap: 5px;
+}
+
+
+
+.apps {
+    width: 100%;
+    height: auto;
+    min-height: 700px;
+    position: absolute;
+    top: 17%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+    overflow: auto;
+}
+
+
+.apps .app1 {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 3px 0px black;
+    width: 91%;
+    min-height: 700px;
+    height: auto;
+    position: absolute;
+    border-radius: 5px;
+    top: 0%;
+    padding: 10px;
+    overflow: auto;
+}
+
+#transactionHistory {
+    width: 100%;
+
+    padding: 10px;
+    box-sizing: border-box;
+
+
+    border-radius: 5px;
+    height: 100%;
+}
+
+.transactionHistoryHead {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgb(133, 133, 133);
+}
+
+#transactionHistory h2 {
+    font-size: 17px;
+    color: rgb(54, 54, 54);
+}
+
+#transactionTable {
+    border: 1px solid rgba(0, 0, 0, 0.377);
+    border-collapse: collapse;
+
+}
+
+#transactionTable th {
+    background-color: #1F7A8C;
+    color: white;
+    padding: 10px;
+}
+
+#transactionTable tr,
+th,
+td {
+    border: 1px solid rgba(0, 0, 0, 0.233);
+    padding: 10px;
+    width: 400px;
+    color: rgb(63, 63, 63);
+}
+
+
+#success {
+    background-color: rgb(42, 211, 99);
+    color: white;
+    text-align: center;
+}
+
+#failed {
+    background-color: rgb(226, 51, 51);
+    color: white;
+    text-align: center;
 }
