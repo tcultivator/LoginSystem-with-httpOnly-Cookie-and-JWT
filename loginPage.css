@@ -193,8 +193,7 @@ p:hover {
     }
 }
 
-
-@media (max-width:300px) {
+@media (max-width:330px) {
     body{
         background-color: red;
     }
