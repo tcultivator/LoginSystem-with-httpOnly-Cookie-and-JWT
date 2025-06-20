@@ -298,6 +298,16 @@ nav .rightSide a:hover::before {
 
 
 #Withdraw {
+    background-color: rgba(0, 0, 0, 0.418);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+}
+
+.withdrawBody {
     color: white;
     position: absolute;
     top: 50%;
@@ -387,9 +397,17 @@ nav .rightSide a:hover::before {
 
 
 
-
-
 #Deposit {
+    background-color: rgba(0, 0, 0, 0.418);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+}
+
+.depositBody {
     color: white;
     position: absolute;
     top: 50%;
@@ -402,6 +420,9 @@ nav .rightSide a:hover::before {
     text-align: center;
 
 }
+
+
+
 
 #Deposit .depositInputBody {
 
@@ -684,7 +705,7 @@ td {
         background-color: rgb(255, 255, 255);
         border-radius: 5px;
         height: 100%;
-        
+
     }
 
     .transactionHistoryHead {
@@ -709,7 +730,7 @@ td {
         background-color: #1F7A8C;
         color: white;
         padding: 10px;
-        
+
     }
 
     #transactionTable tr,
@@ -719,7 +740,7 @@ td {
         padding: 10px;
         width: 400px;
         color: rgb(63, 63, 63);
-        
+
         font-size: 12px;
     }
 }
