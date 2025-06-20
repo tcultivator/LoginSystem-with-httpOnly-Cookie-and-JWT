@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="landingPage.css">
     <script src="https://kit.fontawesome.com/2820820f6e.js" crossorigin="anonymous"></script>
-
-
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>Landing Page</title>
 </head>
@@ -31,7 +28,6 @@
     </nav>
     <i class="fa-solid fa-bars" id="menuIcon"></i>
 
-
     <div id="bankBody">
         <div class="bankContent">
             <div class="Balance">
@@ -54,7 +50,7 @@
             <label for="depositinput">Enter Ammount</label>
         </div>
         <div id="notifDeposit" style="display: none;">
-            <p id="message">Success</p>
+            <p id="message"></p>
             <i class="fa-solid fa-circle-check"></i>
         </div>
 
@@ -75,7 +71,7 @@
             <label for="withdrawinput">Enter Ammount</label>
         </div>
         <div id="notifWithdraw" style="display: none;">
-            <p id="message">Success</p>
+            <p id="message1"></p>
             <i class="fa-solid fa-circle-check"></i>
         </div>
         <div class="buttonWithdraw">
@@ -96,12 +92,37 @@
         </div>
     </div>
 
+    <div class="apps">
+        
+            <div class="app1">
+                <div id="transactionHistory">
+                    <div class="transactionHistoryHead">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <h2>Transaction History</h2>
+                    </div>
+
+                    <table id="transactionTable">
+                        <tr>
+                            <th>UserID</th>
+                            <th>User</th>
+                            <th>Transaction</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+
+                        <tr id="transactionValue">
+                           
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+    </div>
 
 
     <div id="loadingBody" style="display: none;">
         <div id="loading"></div>
     </div>
-
 
     <script defer src="landingPage.js"></script>
 </body>
