@@ -19,7 +19,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         document.getElementById('message').textContent = data.message
         setTimeout(() => {
             document.getElementById('notif').style = `display:none;`
-            window.location.replace('landingPage.html')
+            window.location.replace('index.html')
         }, 500);
 
     }
