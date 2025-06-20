@@ -32,21 +32,36 @@ db.connect((err) => {
 
 app.post('/login', (req, res) => {
     const data = req.body;
-    const query = 'SELECT id FROM accounts WHERE username = ? && password = ?';
+    const islogin = true;
+    const query = 'SELECT * FROM accounts WHERE username = ? && password = ?';
+    const query2 = 'UPDATE accounts SET islogin =? WHERE username = ? && password = ?'
     db.query(query, [data.username, data.password], (err, result) => {
         if (!result.length) {
-            res.status(200).json({ message: 'no data found!' })
+            res.status(500).json({ message: 'no data found!' })
         } else {
             const userData = JSON.parse(JSON.stringify(result[0]));
-            const token = jwt.sign(userData, process.env.JWT_TOKEN_SECRET_KEY, { expiresIn: '1h' })
-            console.log(token);
-            res.cookie('token', token, {
-                httpOnly: true,
-                sameSite: 'none',
-                maxAge: 60 * 60 * 1000,
-                secure: true
-            })
-            res.status(200).json({ message: 'success' })
+            console.log(userData);
+            if (result[0].islogin == true) {
+                res.status(500).json({ message: 'This account is currently active!' })
+                console.log('This account is currently active!')
+            }
+            else {
+                db.query(query2, [islogin, data.username, data.password], (err, result) => {
+                    if (err) {
+                        res.status(200).json({ message: 'no data found!' })
+                    } else {
+                        const token = jwt.sign(userData, process.env.JWT_TOKEN_SECRET_KEY, { expiresIn: '1h' })
+                        res.cookie('token', token, {
+                            httpOnly: true,
+                            sameSite: 'strict',
+                            maxAge: 60 * 60 * 1000,
+                            secure: true
+                        })
+                        res.status(200).json({ message: 'Login Successfully!' })
+                    }
+                })
+            }
+
         }
     })
 })
@@ -63,7 +78,6 @@ app.post('/getme', auth, (req, res) => {
             res.status(200).json({ verifiedUserData, message: 'success!!!!!' })
         }
     })
-
 })
 
 
@@ -83,9 +97,8 @@ function auth(req, res, next) {
 
 app.post('/signup', (req, res) => {
     const userData = req.body;
-    const accountBalance = 0;
-    const query = 'INSERT INTO accounts (username,password,accountBalance)VALUES(?,?,?)'
-    db.query(query, [userData.username, userData.password,accountBalance], (err, result) => {
+    const query = 'INSERT INTO accounts (username,password)VALUES(?,?)'
+    db.query(query, [userData.username, userData.password], (err, result) => {
         if (err) {
             res.status(401).json({ message: 'error signup' })
         }
@@ -94,6 +107,14 @@ app.post('/signup', (req, res) => {
         }
     })
 })
+
+
+
+
+
+
+
+
 
 
 app.put('/deposit', auth, (req, res) => {
@@ -125,6 +146,36 @@ app.put('/withdraw', auth, (req, res) => {
             console.log('success!')
         }
     })
+})
+
+app.post('/userLogout', auth, (req, res) => {
+    const verifiedUserId = req.userId;
+    const islogin = false;
+    const query1 = 'SELECT * FROM accounts WHERE id = ?'
+    const query2 = 'UPDATE accounts SET islogin = ? WHERE id = ?'
+
+    db.query(query1, [verifiedUserId], (err, result) => {
+        if (!result.length) {
+            res.status(401).json({ message: 'error ka una' })
+        }
+        else {
+            db.query(query2, [islogin, verifiedUserId], (err, result) => {
+                if (err) {
+                    res.status(401).json({ message: 'error ka pangalawa' })
+                }
+                else {
+                    res.clearCookie('token', {
+                        httpOnly: true,
+                        secure: true,
+                        sameSite: 'strict',
+                        maxAge: 60 * 60 * 1000
+                    })
+                    res.status(200).json({ message: 'success logout!' })
+                }
+            })
+        }
+    })
+
 })
 
 app.listen(port, () => {
