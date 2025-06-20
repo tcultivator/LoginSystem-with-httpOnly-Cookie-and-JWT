@@ -53,7 +53,7 @@ app.post('/login', (req, res) => {
                         const token = jwt.sign(userData, process.env.JWT_TOKEN_SECRET_KEY, { expiresIn: '1h' })
                         res.cookie('token', token, {
                             httpOnly: true,
-                            sameSite: 'strict',
+                            sameSite: 'none',
                             maxAge: 60 * 60 * 1000,
                             secure: true
                         })
