@@ -192,3 +192,14 @@ p:hover {
         transform: rotate(360deg);
     }
 }
+
+
+@media (max-width:300px) {
+    body{
+        background-color: red;
+    }
+}
+
+
+
+
