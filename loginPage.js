@@ -14,11 +14,21 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
     const data = await login.json()
     if (login.ok) {
-        console.log(data.message)
-        window.location.replace('index.html')
+        document.getElementById('notif').style = `display:flex;
+        background-color:rgb(61, 231, 126)`
+        document.getElementById('message').textContent = data.message
+        setTimeout(() => {
+            document.getElementById('notif').style = `display:none;`
+            window.location.replace('landingPage.html')
+        }, 500);
+
     }
     else {
-        console.log(data.message)
+        document.getElementById('notif').style = `display:flex;`
+        document.getElementById('message').textContent = data.message
+        setTimeout(() => {
+            document.getElementById('notif').style = `display:none;`
+        }, 2000);
     }
 })
 
