@@ -167,7 +167,7 @@ app.post('/userLogout', auth, (req, res) => {
                     res.clearCookie('token', {
                         httpOnly: true,
                         secure: true,
-                        sameSite: 'strict',
+                        sameSite: 'none',
                         maxAge: 60 * 60 * 1000
                     })
                     res.status(200).json({ message: 'success logout!' })
