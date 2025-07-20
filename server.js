@@ -33,8 +33,8 @@ db.connect((err) => {
 app.post('/login', (req, res) => {
     const data = req.body;
     const islogin = true;
-    const query = 'SELECT * FROM accounts WHERE username = ? && password = ?';
-    const query2 = 'UPDATE accounts SET islogin =? WHERE username = ? && password = ?'
+    const query = 'SELECT * FROM bankappAcc WHERE username = ? && password = ?';
+    const query2 = 'UPDATE bankappAcc SET islogin =? WHERE username = ? && password = ?'
     db.query(query, [data.username, data.password], (err, result) => {
         if (!result.length) {
             res.status(500).json({ message: 'no data found!' })
@@ -69,7 +69,7 @@ app.post('/login', (req, res) => {
 app.post('/getme', auth, (req, res) => {
     const verifiedUserId = req.userId;
     console.log('eto na ung verify na id ', verifiedUserId)
-    const query = 'SELECT * FROM accounts WHERE id = ?';
+    const query = 'SELECT * FROM bankappAcc WHERE id = ?';
     db.query(query, [verifiedUserId], (err, result) => {
         if (!result.length) {
             res.status(401).json({ message: 'no data found' })
@@ -98,8 +98,8 @@ function auth(req, res, next) {
 app.post('/signup', (req, res) => {
     const accountBalance = 0;
     const userData = req.body;
-    const query = 'INSERT INTO accounts (username,password,accountBalance)VALUES(?,?,?)'
-    db.query(query, [userData.username, userData.password,accountBalance], (err, result) => {
+    const query = 'INSERT INTO bankappAcc (username,password,accountBalance,isLogin)VALUES(?,?,?,?)'
+    db.query(query, [userData.username, userData.password,accountBalance,0], (err, result) => {
         if (err) {
             res.status(401).json({ message: 'error signup' })
         }
@@ -121,7 +121,7 @@ app.post('/signup', (req, res) => {
 app.put('/deposit', auth, (req, res) => {
     const depositData = req.body;
     const verifiedUserId = req.userId;
-    const query = 'UPDATE accounts SET accountBalance = ? WHERE id = ?'
+    const query = 'UPDATE bankappAcc SET accountBalance = ? WHERE id = ?'
     db.query(query, [depositData.depositAmmount, verifiedUserId], (err, result) => {
         if (err) {
             res.status(401).json({ message: 'error deposit' })
@@ -137,7 +137,7 @@ app.put('/deposit', auth, (req, res) => {
 app.put('/withdraw', auth, (req, res) => {
     const withdrawData = req.body;
     const verifiedUserId = req.userId;
-    const query = 'UPDATE accounts SET accountBalance = ? WHERE id = ?'
+    const query = 'UPDATE bankappAcc SET accountBalance = ? WHERE id = ?'
     db.query(query, [withdrawData.withdrawAmmount, verifiedUserId], (err, result) => {
         if (err) {
             res.status(401).json({ message: 'error withdraw' })
@@ -152,8 +152,8 @@ app.put('/withdraw', auth, (req, res) => {
 app.post('/userLogout', auth, (req, res) => {
     const verifiedUserId = req.userId;
     const islogin = false;
-    const query1 = 'SELECT * FROM accounts WHERE id = ?'
-    const query2 = 'UPDATE accounts SET islogin = ? WHERE id = ?'
+    const query1 = 'SELECT * FROM bankappAcc WHERE id = ?'
+    const query2 = 'UPDATE bankappAcc SET islogin = ? WHERE id = ?'
 
     db.query(query1, [verifiedUserId], (err, result) => {
         if (!result.length) {
