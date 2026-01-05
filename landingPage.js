@@ -1,206 +1,200 @@
-let toggle = false;
 let accountBalance;
 let userId;
 let username;
 let transaction;
-document.getElementById('menuIcon').addEventListener('click', () => {
-    toggle = !toggle;
-    document.getElementById('menuIcon').setAttribute('aria-expanded', toggle);
-    if (toggle) {
-        document.getElementById('rightSide').style = `right: 0;`;
+
+/**
+ * 1. NAVIGATION & SIDEBAR LOGIC
+ */
+const menuIcon = document.getElementById('menuIcon');
+const rightSide = document.getElementById('rightSide');
+
+const toggleMenu = (isOpen) => {
+    if (isOpen) {
+        rightSide.classList.add('active');
+        menuIcon.querySelector('i').classList.replace('fa-bars-staggered', 'fa-xmark');
         document.body.style.overflow = 'hidden';
     } else {
-        document.getElementById('rightSide').style = `right:-360px`;
+        rightSide.classList.remove('active');
+        menuIcon.querySelector('i').classList.replace('fa-xmark', 'fa-bars-staggered');
         document.body.style.overflow = 'auto';
     }
-})
+};
 
-// close mobile menu when a link is clicked (improves UX on mobile)
-document.querySelectorAll('.rightSide a').forEach(a => a.addEventListener('click', () => {
-    toggle = false;
-    document.getElementById('rightSide').style = `right:-360px`;
-    document.getElementById('menuIcon').setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = 'auto';
-}))
-async function getMeData() {
-    const getme = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/getme', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-    const data = await getme.json()
-    if (getme.ok) {
-        document.getElementById('user').innerText = data.verifiedUserData.username;
-        document.getElementById('accountBalance').textContent = ` ₱ ${data.verifiedUserData.accountBalance}`;
-        accountBalance = data.verifiedUserData.accountBalance;
-        userId = data.verifiedUserData.id;
-        username = data.verifiedUserData.username;
-    }
-    else {
-        alert(data.message)
-        window.location.replace('loginPage.html')
-    }
+menuIcon.addEventListener('click', () => {
+    const isOpened = rightSide.classList.contains('active');
+    toggleMenu(!isOpened);
+});
+
+document.querySelectorAll('#rightSide a').forEach(link => {
+    link.addEventListener('click', () => toggleMenu(false));
+});
+
+
+/**
+ * 2. MODERN PROFILE DROPDOWN & LOGOUT
+ */
+const profileBtn = document.getElementById('user');
+const logoutMenu = document.getElementById('logout-menu'); // Matches your HTML ID
+
+profileBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isVisible = logoutMenu.style.display === 'block';
+    logoutMenu.style.display = isVisible ? 'none' : 'block';
+});
+
+// Close dropdown if clicking anywhere else
+document.addEventListener('click', () => {
+    logoutMenu.style.display = 'none';
+});
+
+// Show the Logout Confirmation Modal
+document.getElementById('logout-trigger').addEventListener('click', () => {
+    document.getElementById('modalBody').style.display = 'flex';
+});
+
+function cancelLogout() {
+    document.getElementById('modalBody').style.display = 'none';
 }
-document.addEventListener('DOMContentLoaded', getMeData);
-let profileToggle = false;
-document.getElementById('user').addEventListener('click', () => {
-    profileToggle = !profileToggle;
-    profileToggle ? (document.getElementById('logout').style = `display:block`) : (document.getElementById('logout').style = `display:none`)
-})
-document.getElementById('logout').addEventListener('click', () => {
-    profileToggle = !profileToggle;
-    document.getElementById('logout').style = `display:none`
-    document.getElementById('modalBody').style = `display:flex;`
-})
+
 async function logout() {
     const res = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/userLogout', {
         method: 'POST',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    const data = await res.json()
+        headers: { 'Content-Type': 'application/json' }
+    });
+
     if (res.ok) {
-        console.log('test logout')
-        document.getElementById('loadingBody').style = `display:flex;`
-        document.getElementById('modalBody').style = `display:none;`
-        setTimeout(() => {
-            window.location.replace('loginPage.html')
-        }, 2000);
-    }
-    else {
-        console.log('error sa logout')
+        document.getElementById('loadingBody').style.display = 'flex';
+        document.getElementById('modalBody').style.display = 'none';
+        setTimeout(() => window.location.replace('loginPage.html'), 2000);
     }
 }
-function cancelLogout() {
-    document.getElementById('modalBody').style = `display:none;`
+
+
+/**
+ * 3. DATA FETCHING
+ */
+async function getMeData() {
+    try {
+        const getme = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/getme', {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+        });
+        const data = await getme.json();
+
+        if (getme.ok) {
+            // Update the display username inside the profile button
+            document.getElementById('username-display').textContent = data.verifiedUserData.username;
+            document.getElementById('accountBalance').textContent = `₱ ${data.verifiedUserData.accountBalance.toLocaleString()}`;
+
+            accountBalance = data.verifiedUserData.accountBalance;
+            userId = data.verifiedUserData.id;
+            username = data.verifiedUserData.username;
+        } else {
+            window.location.replace('loginPage.html');
+        }
+    } catch (err) {
+        console.error("Failed to fetch user data", err);
+    }
 }
+document.addEventListener('DOMContentLoaded', getMeData);
+
+
+/**
+ * 4. DEPOSIT & WITHDRAW LOGIC
+ */
 document.getElementById('depositBtn').addEventListener('click', () => {
-    document.getElementById('Deposit').style = `display:block;`
-    hideWithdraw()
-})
+    document.getElementById('Deposit').style.display = 'flex';
+    hideWithdraw();
+});
 
 document.getElementById('withdrawBtn').addEventListener('click', () => {
-    document.getElementById('Withdraw').style = `display:block;`
-    hideDeposit()
-})
-const depositinput = document.getElementById('depositinput');
-async function confirmDeposit() {
-    let status;
-    if (depositinput.value == '') {
-        alert('Please enter an amount')
-    }
-    else {
-        const deposit = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/deposit', {
-            method: 'PUT',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ depositAmmount: parseInt(accountBalance) + parseInt(depositinput.value) })
-        })
-        const data = await deposit.json()
-        const date = new Date();
-        if (deposit.ok) {
-            transaction = `Deposit : ${parseInt(accountBalance)}₱ + ${parseInt(depositinput.value)}₱ `
-            status = 'Success';
-            document.getElementById('notifDeposit').style = `display:flex;
-            background-color: green;`
-            document.getElementById('message').textContent = data.message;
-            setTimeout(() => {
-                getMeData()
-                hideDeposit()
-                document.getElementById('notifDeposit').style = `display:none;`
-                transactionHistory(userId, username, transaction, status, date)
-            }, 1000);
-        }
-        else {
-            transaction = `Deposit : ${parseInt(accountBalance), '+', parseInt(depositinput.value)} `
-            status = 'Failed';
-            document.getElementById('notifDeposit').style = `display:flex;
-            background-color: red;`
-            document.getElementById('message').textContent = data.message;
-            setTimeout(() => {
-                document.getElementById('notifDeposit').style = `display:none;`
-                transactionHistory(userId, username, transaction, status, date)
-            }, 1000);
-        }
-    }
-}
-const withdrawInput = document.getElementById('withdrawinput');
-async function confirmWithdraw() {
-    let status;
-    if (parseInt(accountBalance) < parseInt(withdrawInput.value)) {
-        alert('insufficient balance ')
-    }
-    else if (withdrawInput.value == '') {
-        alert('Please enter an amount')
-    } else {
-        const withdraw = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/withdraw', {
-            method: 'PUT',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ withdrawAmmount: parseInt(accountBalance) - parseInt(withdrawInput.value) })
-        })
-        const date = new Date();
-        const data = await withdraw.json()
-        if (withdraw.ok) {
-            transaction = `Withdraw : ${parseInt(accountBalance)}₱ - ${parseInt(withdrawInput.value)}₱ `
-            document.getElementById('notifWithdraw').style = `display:flex;
-            background-color: green;`
-            document.getElementById('message1').textContent = data.message;
-            status = 'Success';
-            setTimeout(() => {
-                getMeData()
-                hideWithdraw()
-                document.getElementById('notifWithdraw').style = `display:none;`
-                transactionHistory(userId, username, transaction, status, date)
-            }, 1000);
-        }
-        else {
-            status = 'Failed';
-            transaction = `Withdraw : ${parseInt(accountBalance)}₱ - ${parseInt(withdrawInput.value)}₱ `
-            document.getElementById('notifWithdraw').style = `display:flex;
-            background-color: red;`
-            document.getElementById('message1').textContent = data.message;
-            setTimeout(() => {
-                document.getElementById('notifWithdraw').style = `display:none;`
-                transactionHistory(userId, username, transaction, status, date)
-            }, 1000);
-        }
-    }
-}
+    document.getElementById('Withdraw').style.display = 'flex';
+    hideDeposit();
+});
+
 function hideWithdraw() {
-    document.getElementById('Withdraw').style = `display:none;`
-    withdrawInput.value = ''
+    document.getElementById('Withdraw').style.display = 'none';
+    document.getElementById('withdrawinput').value = '';
 }
+
 function hideDeposit() {
-    document.getElementById('Deposit').style = `display:none;`
-    depositinput.value = ''
+    document.getElementById('Deposit').style.display = 'none';
+    document.getElementById('depositinput').value = '';
 }
+
+async function confirmDeposit() {
+    const amount = document.getElementById('depositinput').value;
+    if (!amount || amount <= 0) return alert('Please enter a valid amount');
+
+    const res = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/deposit', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ depositAmmount: parseInt(accountBalance) + parseInt(amount) })
+    });
+
+    const data = await res.json();
+    handleTransactionResponse(res.ok, data.message, 'Deposit', amount, 'notifDeposit', 'message');
+}
+
+async function confirmWithdraw() {
+    const amount = document.getElementById('withdrawinput').value;
+    if (!amount || amount <= 0) return alert('Please enter a valid amount');
+    if (parseInt(accountBalance) < parseInt(amount)) return alert('Insufficient balance');
+
+    const res = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/withdraw', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ withdrawAmmount: parseInt(accountBalance) - parseInt(amount) })
+    });
+
+    const data = await res.json();
+    handleTransactionResponse(res.ok, data.message, 'Withdraw', amount, 'notifWithdraw', 'message1');
+}
+
+/**
+ * 5. MODERN UI UTILITIES (SUCCESS/FAIL FEEDBACK)
+ */
+function handleTransactionResponse(isOk, msg, type, amount, notifId, msgId) {
+    const date = new Date();
+    const status = isOk ? 'Success' : 'Failed';
+    const symbol = type === 'Deposit' ? '+' : '-';
+    const transactionText = `${type}: ₱${accountBalance} ${symbol} ₱${amount}`;
+
+    const notifEl = document.getElementById(notifId);
+    const msgEl = document.getElementById(msgId);
+
+    // Set message with Icon
+    msgEl.innerHTML = `<i class="fa-solid ${isOk ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i> ${msg}`;
+
+    // Apply dynamic success/error styling
+    notifEl.style.display = 'flex';
+    notifEl.className = isOk ? 'notif-bar notif-success' : 'notif-bar notif-error';
+
+    setTimeout(() => {
+        if (isOk) {
+            getMeData();
+            type === 'Deposit' ? hideDeposit() : hideWithdraw();
+        }
+        notifEl.style.display = 'none';
+        transactionHistory(userId, username, transactionText, status, date);
+    }, 2000);
+}
+
 function transactionHistory(userId, username, transaction, status, date) {
-    let statusId = '';
-    if (status == 'Success') {
-        statusId = 'success'
-    } else {
-        statusId = 'failed'
-    }
-    const row = `\n        <tr>\n            <td>${userId}</td>\n            <td>${username}</td>\n            <td>${transaction}</td>\n            <td id='${statusId}'>${status}</td>\n            <td>${date}</td>\n        </tr>`;
-    const container = document.getElementById('transactionValue') || document.getElementById('transactionTable');
-    container.innerHTML += row;
+    const statusClass = (status === 'Success') ? 'success' : 'failed';
+    const row = `
+        <tr>
+            <td>${userId}</td>
+            <td>${username}</td>
+            <td>${transaction}</td>
+            <td><span id="${statusClass}">${status}</span></td>
+            <td>${new Date(date).toLocaleString()}</td>
+        </tr>`;
+    const container = document.getElementById('transactionValue');
+    container.innerHTML = row + container.innerHTML;
 }
-
-
-
-
-
-
-
-
-
-

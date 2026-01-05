@@ -5,54 +5,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/2820820f6e.js" crossorigin="anonymous"></script>
-
-
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="loginPage.css">
-    <title>Login v3</title>
+    <title>BankApp | Login</title>
 </head>
 
 <body>
 
-    <form id="loginForm">
-        <div class="header">
-            <h1>LOGIN</h1>
-            <button type="button" id="goto">X</button>
-        </div>
-        <div class="usernameBody">
-            <input type="text" id="username" placeholder="" required>
-            <div class="usernameLabelbody">
-                <i class="fa-solid fa-user"></i>
-                <label for="username">Enter Username</label>
-            </div>
-
-        </div>
-        <div class="passwordBody">
-            <input type="password" id="password" placeholder="" required>
-            <div class="passwordLabelBody">
-                <i class="fa-solid fa-lock"></i>
-                <label for="password">Enter Password</label>
-            </div>
-
-        </div>
-        <div class="buttonBody">
-            <button type="submit">Submit</button>
-        </div>
-        <p id="gotogoto">Don't have account yet?</p>
-    </form>
-
-    <div id="loadingBody" style="display: none;">
-        <div id="loading"></div>
-    </div>
-    
-    <div id="notif" style="display: none;">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        <span id="message">This account is currently active!</span>
+    <!-- Top Notification Bar -->
+    <div id="notif" class="notif-bar" style="display: none;">
+        <i class="fa-solid fa-circle-info"></i>
+        <span id="message">Notification message here</span>
     </div>
 
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo-circle">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <h1>Welcome Back</h1>
+                <p>Please enter your details to access your bank.</p>
+                <!-- The "X" button redirected to Register in your JS, so I've styled it as a Close/Back button -->
+                <button type="button" id="goto" class="close-btn" title="Go to Register">&times;</button>
+            </div>
 
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="username" placeholder="Enter your username" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                </div>
+
+                <div class="login-actions">
+                    <button type="submit" class="btn-submit">Sign In</button>
+                </div>
+            </form>
+
+            <div class="login-footer">
+                <p id="gotogoto">Don't have an account yet? <span>Register now</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingBody" class="loader-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Securing your session...</p>
+    </div>
 
     <script defer src="loginPage.js"></script>
 </body>
