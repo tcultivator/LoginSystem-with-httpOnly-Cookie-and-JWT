@@ -1,53 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="landingPage.css">
-    <script src="https://kit.fontawesome.com/2820820f6e.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <title>Landing Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://kit.fontawesome.com/2820820f6e.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <title>Landing Page</title>
 </head>
 <body>
-    <nav>
-        <div class="leftSide">
-            <h3>LOGO</h3>
-        </div>
-        <div id="rightSide" class="rightSide">
-            <a href="index.html">Home</a>
-            <a href="">About</a>
-            <a href="mailto:lpanahon06@gmail.com">Contact</a>
-            <div class="profile">
-                <i class="fa-solid fa-user"></i>
-                <label id="user">profile</label>
-            </div>
-            <p id="logout">Logout</p>
-        </div>
+  <header class="site-header">
+    <nav class="nav container">
+      <div class="leftSide brand">
+        <h1 class="logo">Bank<span class="accent">Portal</span></h1>
+      </div>
 
+      <div id="rightSide" class="rightSide">
+        <a href="index.html">Home</a>
+        <a href="">About</a>
+        <a href="mailto:lpanahon06@gmail.com">Contact</a>
+        <div class="profile" title="Profile">
+          <i class="fa-solid fa-user"></i>
+          <label id="user">profile</label>
+        </div>
+        <p id="logout" class="logout">Logout</p>
+      </div>
+
+      <button id="menuIcon" class="menu-btn" aria-label="menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </nav>
-    <i class="fa-solid fa-bars" id="menuIcon"></i>
+  </header>
 
-    <div id="bankBody">
-        <div class="bankContent">
-            <div class="Balance">
-                <label for="">Balance : <span id="accountBalance"></span></label>
-            </div>
+    <main class="container main">
+      <section class="hero">
+        <div class="hero-card">
+          <div class="hero-left">
+            <h2 class="card-title">Account Balance</h2>
+            <p class="balance">PHP <span id="accountBalance">0.00</span></p>
             <div class="bankBtn">
-                <button id="depositBtn">Deposit</button>
-                <button id="withdrawBtn">Withdraw</button>
+              
             </div>
+          </div>
+          <div class="hero-right">
+            <div class="quick-actions">
+              <div id="depositBtn" class="action">
+                <i class="fa-solid fa-arrow-down-long"></i>
+                <small>Deposit</small>
+              </div>
+              <div id="withdrawBtn" class="action">
+                <i class="fa-solid fa-arrow-up-long"></i>
+                <small>Withdraw</small>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
+      </section>
 
-   <div id="Deposit" style="display: none;">
-        <div class="depositBody">
+   <div id="Deposit" class="overlay" style="display: none;">
+        <div class="dialog depositBody">
             <div class="depositwHead">
                 <h2>DEPOSIT</h2>
             </div>
             <div class="depositInputBody">
 
-                <input type="number" id="depositinput" placeholder="">
-                <label for="depositinput">Enter Ammount</label>
+                <input type="number" id="depositinput" placeholder=" ">
+                <label for="depositinput">Enter Amount</label>
             </div>
             <div id="notifDeposit" style="display: none;">
                 <p id="message"></p>
@@ -55,8 +73,8 @@
             </div>
 
             <div class="buttonDeposit">
-                <button onclick="confirmDeposit()">Submit</button>
-                <button onclick="hideDeposit()">Cancel</button>
+                <button onclick="confirmDeposit()" class="btn primary">Submit</button>
+                <button onclick="hideDeposit()" class="btn outline">Cancel</button>
             </div>
         </div>
 
@@ -64,62 +82,65 @@
 
     </div>
 
-    <div id="Withdraw" style="display: none;">
-        <div class="withdrawBody">
+    <div id="Withdraw" class="overlay" style="display: none;">
+        <div class="dialog withdrawBody">
             <div class="withdrawHead">
                 <h2>WITHDRAW</h2>
             </div>
             <div class="withdrawInputBody">
-                <input type="number" id="withdrawinput" placeholder="" required>
-                <label for="withdrawinput">Enter Ammount</label>
+                <input type="number" id="withdrawinput" placeholder=" " required>
+                <label for="withdrawinput">Enter Amount</label>
             </div>
             <div id="notifWithdraw" style="display: none;">
                 <p id="message1"></p>
                 <i class="fa-solid fa-circle-check"></i>
             </div>
             <div class="buttonWithdraw">
-                <button onclick="confirmWithdraw()">Submit</button>
-                <button onclick="hideWithdraw()">Cancel</button>
+                <button onclick="confirmWithdraw()" class="btn primary">Submit</button>
+                <button onclick="hideWithdraw()" class="btn outline">Cancel</button>
             </div>
         </div>
     </div>
 
 
     <div id="modalBody" style="display: none;">
-        <div class="modalcontent">
+        <div class="dialog modalcontent">
             <h2>Are You Sure?</h2>
             <div class="modalBtn">
-                <button onclick="logout()" type="button">YES</button>
-                <button onclick="cancelLogout()" type="button">NO</button>
+                <button onclick="logout()" type="button" class="btn primary">YES</button>
+                <button onclick="cancelLogout()" type="button" class="btn outline">NO</button>
             </div>
         </div>
     </div>
 
-    <div class="apps">
-            <div class="app1">
-                <div id="transactionHistory">
-                    <div class="transactionHistoryHead">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                        <h2>Transaction History</h2>
-                    </div>
+    <section class="history">
+      <div class="transaction-card">
+        <div id="transactionHistory" class="transactionHeader">
+          <div class="transactionHistoryHead">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <h2>Transaction History</h2>
+          </div>
+        </div>
 
-                    <table id="transactionTable">
-                        <tr>
-                            <th>UserID</th>
-                            <th>User</th>
-                            <th>Transaction</th>
-                            <th>Status</th>
-                            <th>Date</th>
-                        </tr>
-
-                        <tr id="transactionValue">
-                           
-                        </tr>
-
-                    </table>
-                </div>
-            </div>
-    </div>
+        <div class="table-wrap">
+          <table id="transactionTable" class="table">
+            <thead>
+              <tr>
+                <th>UserID</th>
+                <th>User</th>
+                <th>Transaction</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="transactionValue">
+              <!-- Transactions populated here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
 
 
     <div id="loadingBody" style="display: none;">
