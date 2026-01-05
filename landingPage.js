@@ -5,8 +5,23 @@ let username;
 let transaction;
 document.getElementById('menuIcon').addEventListener('click', () => {
     toggle = !toggle;
-    toggle ? (document.getElementById('rightSide').style = `right: 0;`) : (document.getElementById('rightSide').style = `right:-350px`)
+    document.getElementById('menuIcon').setAttribute('aria-expanded', toggle);
+    if (toggle) {
+        document.getElementById('rightSide').style = `right: 0;`;
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.getElementById('rightSide').style = `right:-360px`;
+        document.body.style.overflow = 'auto';
+    }
 })
+
+// close mobile menu when a link is clicked (improves UX on mobile)
+document.querySelectorAll('.rightSide a').forEach(a => a.addEventListener('click', () => {
+    toggle = false;
+    document.getElementById('rightSide').style = `right:-360px`;
+    document.getElementById('menuIcon').setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = 'auto';
+}))
 async function getMeData() {
     const getme = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/getme', {
         method: 'POST',
@@ -76,7 +91,7 @@ const depositinput = document.getElementById('depositinput');
 async function confirmDeposit() {
     let status;
     if (depositinput.value == '') {
-        alert('Insert Ammount')
+        alert('Please enter an amount')
     }
     else {
         const deposit = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/deposit', {
@@ -122,7 +137,7 @@ async function confirmWithdraw() {
         alert('insufficient balance ')
     }
     else if (withdrawInput.value == '') {
-        alert('Insert Ammount')
+        alert('Please enter an amount')
     } else {
         const withdraw = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/withdraw', {
             method: 'PUT',
@@ -172,16 +187,12 @@ function transactionHistory(userId, username, transaction, status, date) {
     let statusId = '';
     if (status == 'Success') {
         statusId = 'success'
-        console.log(statusId)
     } else {
         statusId = 'failed'
     }
-    document.getElementById('transactionTable').innerHTML += ` 
-                        <td>${userId}</td>
-                        <td>${username}</td>
-                        <td>${transaction}</td>
-                        <td id='${statusId}'>${status}</td>
-                        <td>${date}</td>`
+    const row = `\n        <tr>\n            <td>${userId}</td>\n            <td>${username}</td>\n            <td>${transaction}</td>\n            <td id='${statusId}'>${status}</td>\n            <td>${date}</td>\n        </tr>`;
+    const container = document.getElementById('transactionValue') || document.getElementById('transactionTable');
+    container.innerHTML += row;
 }
 
 

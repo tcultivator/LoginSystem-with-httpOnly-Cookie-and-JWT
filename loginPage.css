@@ -1,9 +1,31 @@
+:root {
+    /* Minimalist, modern palette */
+    --bg-1: #f5f7f9;
+    /* page background */
+    --bg-2: #eef1f4;
+    /* subtle gradient */
+    --accent: #5b7c97;
+    /* muted slate */
+    --accent-2: #708a99;
+    /* slightly darker */
+    --muted: #6b7280;
+    /* muted text */
+    --card: #ffffff;
+    /* surfaces */
+    --glass: rgba(255, 255, 255, 0.6);
+    --surface: #f7f9fb;
+    /* subtle surface */
+    --text: #111827;
+    /* main text color */
+}
+
 body {
     padding: 0;
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    overflow: hidden;
-    background-color: #053C5E;
+    background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
 
 
 }
@@ -19,13 +41,13 @@ body::before {
 
 
 #loginForm {
-    color: white;
+    color: var(--accent);
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px rgb(255, 255, 255);
+    box-shadow: 0px 0px 5px 0px var(--accent);
     max-width: 400px;
     width: 100%;
 
@@ -52,7 +74,7 @@ body::before {
     border: none;
     padding: 5px;
     width: 30px;
-    color: rgb(255, 255, 255);
+    color: var(--accent);
     background: none;
     cursor: pointer;
 
@@ -76,7 +98,7 @@ body::before {
     display: flex;
     align-items: center;
     gap: 5px;
-    color: white;
+    
 
 }
 
@@ -84,13 +106,13 @@ body::before {
 .passwordBody .passwordLabelBody label {
     transition: .2s;
     cursor: text;
-    color: white;
+    color: var(--accent-2);
 }
 
 
 .usernameBody .usernameLabelbody i,
 .passwordBody .passwordLabelBody i {
-    color: white;
+    color: var(--accent);
     font-size: 15px;
     border-right: 1px solid rgb(110, 110, 110);
     padding: 10px;
@@ -104,9 +126,8 @@ body::before {
     border: 1px solid rgb(110, 110, 110);
     border-radius: 5px;
     width: 100%;
-    color: rgb(78, 78, 78);
     background: none;
-    color: white;
+    color: var(--text);
 }
 
 
@@ -117,7 +138,7 @@ body::before {
     transform: translate(10px, -33px);
 
     padding: 0px 5px;
-
+    color: var(--text);
     font-size: 13px;
 }
 
@@ -129,7 +150,7 @@ body::before {
 }
 
 .buttonBody button {
-    background-color: #1F7A8C;
+    background-color: var(--accent);
     padding: 10px;
     border: none;
     align-items: center;
@@ -143,12 +164,12 @@ body::before {
 }
 
 .buttonBody button:hover {
-    background-color: #208ba0;
+    background-color: var(--accent-2);
 
 }
 
 p {
-    color: rgb(255, 255, 255);
+    color: var(--accent-2);
     text-decoration: none;
     cursor: pointer;
 }
@@ -215,13 +236,13 @@ p:hover {
 @media (max-width:500px) {
 
     #loginForm {
-        color: white;
+        color: var(--text);
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
         border-radius: 5px;
-        box-shadow: 0px 0px 5px 0px rgb(255, 255, 255);
+        box-shadow: 0px 0px 5px 0px var(--accent);
         max-width: 300px;
         width: 100%;
 
