@@ -1,46 +1,51 @@
-const username = document.getElementById('username')
-const password = document.getElementById('password')
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const notif = document.getElementById('notif');
+const message = document.getElementById('message');
 
 document.getElementById('loginForm').addEventListener('submit', async function (e) {
-    e.preventDefault()
+    e.preventDefault();
+
     const login = await fetch('https://loginsystem-with-httponly-cookie-and-jwt.onrender.com/login', {
         method: 'POST',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: username.value, password: password.value })
-    })
+    });
 
-    const data = await login.json()
+    const data = await login.json();
+
     if (login.ok) {
-        document.getElementById('notif').style = `display:flex;
-        background-color:rgb(61, 231, 126)`
-        document.getElementById('message').textContent = data.message
+        // Success State
+        notif.style.display = 'flex';
+        notif.className = 'notif-bar notif-success';
+        message.textContent = data.message;
+
         setTimeout(() => {
-            document.getElementById('notif').style = `display:none;`
+            notif.style.display = 'none';
             window.location.replace('index.html');
-        }, 500);
-    }
-    else {
-        document.getElementById('notif').style = `display:flex;`
-        document.getElementById('message').textContent = data.message
+        }, 800);
+    } else {
+        // Error State
+        notif.style.display = 'flex';
+        notif.className = 'notif-bar notif-error';
+        message.textContent = data.message;
+
         setTimeout(() => {
-            document.getElementById('notif').style = `display:none;`
-        }, 2000);
+            notif.style.display = 'none';
+        }, 3000);
     }
-})
+});
 
-document.getElementById('goto').addEventListener('click', () => {
-    document.getElementById('loadingBody').style = 'display: flex;'
+/**
+ * Navigation to Register
+ */
+const goToRegister = () => {
+    document.getElementById('loadingBody').style.display = 'flex';
     setTimeout(() => {
-        window.location.replace('registerPage.html')
+        window.location.replace('registerPage.html');
     }, 1000);
-})
+};
 
-document.getElementById('gotogoto').addEventListener('click', () => {
-    document.getElementById('loadingBody').style = 'display: flex;'
-    setTimeout(() => {
-        window.location.replace('registerPage.html')
-    }, 1000);
-})
+document.getElementById('goto').addEventListener('click', goToRegister);
+document.getElementById('gotogoto').addEventListener('click', goToRegister);
